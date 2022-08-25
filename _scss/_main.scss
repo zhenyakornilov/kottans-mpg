@@ -1,0 +1,11 @@
+@import "reset_defaults", "header";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
