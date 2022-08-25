@@ -6,7 +6,7 @@ function renderCards(cardsObj) {
     .map(({ name, imageSrc }) => {
       return (
         `<li class="card">` +
-        `  <img class="card-img" width="150px" src="${imageSrc}" alt="image of ${name}">` +
+        `  <img class="card-img" src="${imageSrc}" alt="image of ${name}">` +
         `  <p class='card-desc'>${name}</p>` +
         `</li>`
       );

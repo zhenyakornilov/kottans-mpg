@@ -17,6 +17,27 @@ li {
 }
 
 .content {
+  align-self: center;
   display: flex;
   flex-direction: column;
+}
+
+.all-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.all-cards .card-desc {
+  text-align: center;
+}
+
+.card-img {
+  width: 120px;
+}
+
+.timer {
+  align-self: center;
+}
+
+.start-button {
+  align-self: center;
 }
