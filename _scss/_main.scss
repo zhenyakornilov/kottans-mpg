@@ -1,5 +1,8 @@
 @import "reset_defaults", "header";
 
+.body {
+  background-color: #f0ebe3;
+}
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -14,14 +17,22 @@
 .all-cards {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
 
   .card-desc {
     text-align: center;
+    font-size: 1.6rem;
   }
 }
 
+.card {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+}
+
 .card-img {
-  width: 120px;
+  width: 100px;
 }
 
 .timer {

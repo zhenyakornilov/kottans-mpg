@@ -1,5 +1,7 @@
 import cards from "./cards.js";
 
+const allGameCards = [...cards, ...cards];
+
 function renderCards(cardsObj) {
   const cardsAll = document.getElementById("game-cards");
   let cardsHTML = cardsObj
@@ -16,4 +18,4 @@ function renderCards(cardsObj) {
   cardsAll.innerHTML = cardsHTML;
 }
 
-renderCards(cards);
+renderCards(allGameCards);
