@@ -64,7 +64,7 @@
   align-items: center;
 }
 
-.game-card:hover .card-inner {
+.game-card.flipped .card-inner {
   transform: rotateY(180deg);
 }
 
@@ -86,4 +86,20 @@
 
 .start-button {
   align-self: center;
+}
+
+.start-btn {
+  margin-top: 20px;
+  width: 100px;
+  height: 30px;
+  border: 1px solid #7d9d9c;
+  color: #7d9d9c;
+  border-radius: 5px;
+  font-size: 1.4rem;
+}
+
+.start-btn:hover {
+  background-color: #7d9d9c;
+  color: #f0ebe3;
+  transition: background-color 0.5s;
 }

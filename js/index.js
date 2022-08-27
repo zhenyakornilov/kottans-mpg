@@ -1,10 +1,16 @@
 import cards from "./cards.js";
 
+const cardsMenu = document.getElementById("game-cards");
+const timer = document.getElementById("timer");
+const startBtn = document.getElementById("start-button");
+
 const states = {
   flippedCards: 0,
+  cardsPairs: 0,
+  isGameStarted: false,
 };
 
-const allGameCards = [...cards, ...cards];
+const allGameCards = shuffleCards([...cards, ...cards]);
 
 function shuffleCards(cardsArr) {
   for (let i = cardsArr.length - 1; i > 0; i--) {
@@ -23,7 +29,7 @@ function renderCards(cardsObj) {
     .map(({ name, imageSrc }) => {
       return `
       <li class="game-card">
-        <div class='card-inner'>
+        <div class="card-inner">
           <div class="card-front">
             <img class="card-img-front" src="images/treble_clef.webp" alt="image of treble clef">
           </div>
@@ -40,4 +46,31 @@ function renderCards(cardsObj) {
   cardsAll.innerHTML = cardsHTML;
 }
 
-renderCards(shuffleCards(allGameCards));
+renderCards(allGameCards);
+
+const cardPair = [];
+cardsMenu.addEventListener("click", ({ target }) => {
+  let currentCard = target.closest(".game-card");
+  if (!currentCard.classList.contains("flipped")) {
+    cardPair.push(currentCard);
+    currentCard.classList.add("flipped");
+  }
+
+  if (cardPair.length === 2) {
+    const [first, second] = cardPair;
+    console.log(first);
+    console.log(second);
+
+    if (!first.isEqualNode(second)) {
+      states.flippedCards = 0;
+      flipBack();
+    }
+  }
+});
+
+
+function flipBack() {
+  document
+    .querySelectorAll(".flipped")
+    .forEach((card) => card.closest(".game-card").classList.remove("flipped"));
+}
