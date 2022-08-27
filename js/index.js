@@ -6,9 +6,16 @@ const states = {
 
 const allGameCards = [...cards, ...cards];
 
-allGameCards.sort(() => {
-  return 0.5 - Math.random();
-});
+function shuffleCards(cardsArr) {
+  for (let i = cardsArr.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let swap = cardsArr[i];
+    cardsArr[i] = cardsArr[j];
+    cardsArr[j] = swap;
+  }
+
+  return cardsArr;
+}
 
 function renderCards(cardsObj) {
   const cardsAll = document.getElementById("game-cards");
@@ -33,4 +40,4 @@ function renderCards(cardsObj) {
   cardsAll.innerHTML = cardsHTML;
 }
 
-renderCards(allGameCards);
+renderCards(shuffleCards(allGameCards));
