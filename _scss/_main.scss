@@ -18,6 +18,9 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
 
   .card-desc {
     text-align: center;
@@ -25,14 +28,19 @@
   }
 }
 
-.card {
+.card-front,
+.card-back {
   background-color: #fff;
   border-radius: 5px;
   padding: 10px;
 }
 
 .card-img {
-  width: 100px;
+  width: 90px;
+}
+
+.card-img-front {
+  width: 60px;
 }
 
 .timer {
