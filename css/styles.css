@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-#root {
+html {
   font-size: 62.5%;
 }
 
@@ -46,9 +46,6 @@ li {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  transition: 0.6s;
-  transform-style: preserve-3d;
-  position: relative;
 }
 
 .all-cards .card-desc {
@@ -56,24 +53,44 @@ li {
   font-size: 1.6rem;
 }
 
-.card {
-  cursor: pointer;
+.game-card {
+  background-color: #f0ebe3;
+  width: 118px;
+  height: 136px;
+  perspective: 1000px;
+}
+
+.card-inner {
   position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
 }
 
 .card-front,
 .card-back {
+  width: 100%;
+  height: 100%;
   background-color: #fff;
-  border-radius: 5px;
-  padding: 10px;
+  backface-visibility: hidden;
+  position: absolute;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.game-card:hover .card-inner {
+  transform: rotateY(180deg);
 }
 
 .card-img {
-  width: 90px;
+  width: 98px;
 }
 
 .card-img-front {
-  width: 90px;
+  width: 98px;
 }
 
 .timer {
