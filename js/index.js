@@ -4,8 +4,8 @@ const cardsMenu = document.getElementById("game-cards");
 const timer = document.getElementById("timer");
 const startBtn = document.getElementById("start-button");
 
+
 const states = {
-  flippedCards: 0,
   cardsPairs: 0,
   isGameStarted: false,
 };
@@ -48,22 +48,26 @@ function renderCards(cardsObj) {
 
 renderCards(allGameCards);
 
-const cardPair = [];
+let cardPair = [];
 cardsMenu.addEventListener("click", ({ target }) => {
   let currentCard = target.closest(".game-card");
-  if (!currentCard.classList.contains("flipped")) {
-    cardPair.push(currentCard);
+  if (currentCard) {
+    if (!currentCard.classList.contains("flipped")) {
+      cardPair.push(currentCard);
+    }
     currentCard.classList.add("flipped");
-  }
-
-  if (cardPair.length === 2) {
-    const [first, second] = cardPair;
-    console.log(first);
-    console.log(second);
-
-    if (!first.isEqualNode(second)) {
-      states.flippedCards = 0;
-      flipBack();
+  
+    if (cardPair.length === 2) {
+      const [first, second] = cardPair;
+      console.log(first === second)
+  
+      // bug here, I can keep clicking cards
+      if (!first.isEqualNode(second)) {
+        setTimeout(() => {
+          flipBack();
+        }, 5000);
+      }
+      cardPair = [];
     }
   }
 });
