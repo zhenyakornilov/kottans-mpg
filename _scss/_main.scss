@@ -28,6 +28,11 @@
   }
 }
 
+.card {
+  cursor: pointer;
+  position: relative;
+}
+
 .card-front,
 .card-back {
   background-color: #fff;
@@ -40,7 +45,7 @@
 }
 
 .card-img-front {
-  width: 60px;
+  width: 90px;
 }
 
 .timer {

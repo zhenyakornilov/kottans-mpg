@@ -56,6 +56,11 @@ li {
   font-size: 1.6rem;
 }
 
+.card {
+  cursor: pointer;
+  position: relative;
+}
+
 .card-front,
 .card-back {
   background-color: #fff;
@@ -68,7 +73,7 @@ li {
 }
 
 .card-img-front {
-  width: 60px;
+  width: 90px;
 }
 
 .timer {

@@ -17,7 +17,7 @@ function renderCards(cardsObj) {
       return `
       <li class="card">
         <div class="card-front">
-          <img class="card-img-front" src="images/treble_clef.svg" alt="image of treble clef">
+          <img class="card-img-front" src="images/treble_clef.webp" alt="image of treble clef">
         </div>
         <div class="card-back">
           <img class="card-img" src="${imageSrc}" alt="image of ${name}">
