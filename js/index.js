@@ -62,6 +62,7 @@ cardsMenu.addEventListener("click", ({ target }) => {
       console.log(first === second)
   
       // bug here, I can keep clicking cards
+      // disable listener function is needed here
       if (!first.isEqualNode(second)) {
         setTimeout(() => {
           flipBack();
