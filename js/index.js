@@ -4,7 +4,6 @@ const cardsMenu = document.getElementById("game-cards");
 const timer = document.getElementById("timer");
 const startBtn = document.getElementById("start-button");
 
-
 const states = {
   cardsPairs: 0,
   isGameStarted: false,
@@ -49,33 +48,42 @@ function renderCards(cardsObj) {
 renderCards(allGameCards);
 
 let cardPair = [];
-cardsMenu.addEventListener("click", ({ target }) => {
+cardsMenu.addEventListener("click", function flipCards({ target }) {
   let currentCard = target.closest(".game-card");
   if (currentCard) {
     if (!currentCard.classList.contains("flipped")) {
       cardPair.push(currentCard);
     }
     currentCard.classList.add("flipped");
-  
+
     if (cardPair.length === 2) {
       const [first, second] = cardPair;
-      console.log(first === second)
-  
-      // bug here, I can keep clicking cards
-      // disable listener function is needed here
+      console.log(first.isEqualNode(second));
+
       if (!first.isEqualNode(second)) {
         setTimeout(() => {
           flipBack();
-        }, 5000);
+        }, 1000);
+      } else {
+        first.classList.add("matched");
+        second.classList.add("matched");
+        states.cardsPairs++;
       }
       cardPair = [];
+    }
+
+    if (states.cardsPairs === cards.length) {
+      console.log("WIN GAME");
+      alert("You won!");
     }
   }
 });
 
-
 function flipBack() {
-  document
-    .querySelectorAll(".flipped")
-    .forEach((card) => card.closest(".game-card").classList.remove("flipped"));
+  document.querySelectorAll(".flipped").forEach((card) => {
+    console.log(card.classList);
+    if (!card.classList.contains("matched")) {
+      card.closest(".game-card").classList.remove("flipped");
+    }
+  });
 }
