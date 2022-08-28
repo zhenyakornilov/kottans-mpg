@@ -80,22 +80,12 @@
   width: 98px;
 }
 
-.start-button {
+.matched {
+  opacity: 0.4;
+}
+
+.total {
   align-self: center;
-}
-
-.start-btn {
-  margin-top: 20px;
-  width: 100px;
-  height: 30px;
-  border: 1px solid #7d9d9c;
-  color: #7d9d9c;
-  border-radius: 5px;
-  font-size: 1.4rem;
-}
-
-.start-btn:hover {
-  background-color: #7d9d9c;
-  color: #f0ebe3;
-  transition: background-color 0.5s;
+  font-size: 2rem;
+  padding: 10px 0 10px 0;
 }
