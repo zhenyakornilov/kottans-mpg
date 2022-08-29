@@ -1,6 +1,8 @@
 import cards from "./cards.js";
 
 const cardsMenu = document.getElementById("game-cards");
+const totalTriesCounter = document.getElementById("total-flips");
+console.log(totalTriesCounter)
 const states = {
   cardsPairs: 0,
   firstFlippedCard: null,
@@ -58,6 +60,10 @@ function flipBack() {
   });
 }
 
+function restartGame() {
+  location.reload()
+}
+
 cardsMenu.addEventListener("click", async function flipCards({ target }) {
   let currentCard = target.closest(".game-card");
   if (currentCard) {
@@ -75,20 +81,23 @@ cardsMenu.addEventListener("click", async function flipCards({ target }) {
 
       if (!states.firstFlippedCard.isEqualNode(states.secondFlippedCard)) {
         await sleep(600).then(flipBack);
+        states.totalTries++;
       } else {
         await sleep(600).then(() => {
           states.firstFlippedCard.classList.add("matched");
           states.secondFlippedCard.classList.add("matched");
         });
         states.cardsPairs++;
+        states.totalTries++;
       }
       states.currentCardPair = [];
+      totalTriesCounter.innerHTML = `Total tries: ${states.totalTries}`;
+
     }
 
     if (states.cardsPairs === cards.length) {
-      console.log("WIN GAME");
-      await sleep(1000).then(() => alert("You won!"));
-      location.reload();
+      await sleep(1000).then(() => alert(`You found all pairs in ${states.totalTries} tries!`));
+      restartGame();
     }
   }
 });
