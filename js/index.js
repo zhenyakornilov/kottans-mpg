@@ -2,9 +2,8 @@ import cards from "./cards.js";
 
 const cardsMenu = document.getElementById("game-cards");
 const totalTriesCounter = document.getElementById("total-flips");
-console.log(totalTriesCounter)
 const states = {
-  cardsPairs: 0,
+  cardsMatches: 0,
   firstFlippedCard: null,
   secondFlippedCard: null,
   currentCardPair: [],
@@ -53,7 +52,6 @@ function sleep(milliseconds) {
 
 function flipBack() {
   document.querySelectorAll(".flipped").forEach((card) => {
-    console.log(card.classList);
     if (!card.classList.contains("matched")) {
       card.closest(".game-card").classList.remove("flipped");
     }
@@ -61,7 +59,7 @@ function flipBack() {
 }
 
 function restartGame() {
-  location.reload()
+  location.reload();
 }
 
 cardsMenu.addEventListener("click", async function flipCards({ target }) {
@@ -75,9 +73,6 @@ cardsMenu.addEventListener("click", async function flipCards({ target }) {
     if (states.currentCardPair.length === 2) {
       [states.firstFlippedCard, states.secondFlippedCard] =
         states.currentCardPair;
-      console.log(
-        states.firstFlippedCard.isEqualNode(states.secondFlippedCard)
-      );
 
       if (!states.firstFlippedCard.isEqualNode(states.secondFlippedCard)) {
         await sleep(600).then(flipBack);
@@ -87,16 +82,17 @@ cardsMenu.addEventListener("click", async function flipCards({ target }) {
           states.firstFlippedCard.classList.add("matched");
           states.secondFlippedCard.classList.add("matched");
         });
-        states.cardsPairs++;
+        states.cardsMatches++;
         states.totalTries++;
       }
       states.currentCardPair = [];
       totalTriesCounter.innerHTML = `Total tries: ${states.totalTries}`;
-
     }
 
-    if (states.cardsPairs === cards.length) {
-      await sleep(1000).then(() => alert(`You found all pairs in ${states.totalTries} tries!`));
+    if (states.cardsMatches === cards.length) {
+      await sleep(1000).then(() =>
+        alert(`You found all pairs in ${states.totalTries} tries!`)
+      );
       restartGame();
     }
   }
