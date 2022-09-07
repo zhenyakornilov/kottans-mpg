@@ -65,9 +65,12 @@ function restartGame() {
   location.reload();
 }
 
+let cardsBlocked = false;
+
 cardsMenu.addEventListener("click", async function flipCards({ target }) {
-  let currentCard = target.closest(".game-card");
-  if (currentCard) {
+  const currentCard = target.closest(".game-card");
+
+  if (currentCard && !cardsBlocked) {
     if (!currentCard.classList.contains("flipped")) {
       states.currentCardPair.push(currentCard);
     }
@@ -76,6 +79,7 @@ cardsMenu.addEventListener("click", async function flipCards({ target }) {
     if (states.currentCardPair.length === 2) {
       [states.firstFlippedCard, states.secondFlippedCard] =
         states.currentCardPair;
+      cardsBlocked = true;
 
       if (!checkCardsMatch()) {
         await sleep(600).then(() => flipBack(states.currentCardPair));
@@ -88,6 +92,7 @@ cardsMenu.addEventListener("click", async function flipCards({ target }) {
         states.cardsMatches++;
         states.totalTries++;
       }
+      cardsBlocked = false;
       states.currentCardPair = [];
       totalTriesCounter.innerHTML = `Total tries: ${states.totalTries}`;
     }
