@@ -49,12 +49,16 @@ function sleep(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
-function flipBack() {
-  document.querySelectorAll(".flipped").forEach((card) => {
+function flipBack(currentCardPair) {
+  currentCardPair.forEach((card) => {
     if (!card.classList.contains("matched")) {
       card.closest(".game-card").classList.remove("flipped");
     }
   });
+}
+
+function checkCardsMatch() {
+  return states.firstFlippedCard.isEqualNode(states.secondFlippedCard);
 }
 
 function restartGame() {
@@ -73,8 +77,8 @@ cardsMenu.addEventListener("click", async function flipCards({ target }) {
       [states.firstFlippedCard, states.secondFlippedCard] =
         states.currentCardPair;
 
-      if (!states.firstFlippedCard.isEqualNode(states.secondFlippedCard)) {
-        await sleep(600).then(flipBack);
+      if (!checkCardsMatch()) {
+        await sleep(600).then(() => flipBack(states.currentCardPair));
         states.totalTries++;
       } else {
         await sleep(600).then(() => {
