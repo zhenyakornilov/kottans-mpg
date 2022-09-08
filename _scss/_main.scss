@@ -15,6 +15,14 @@
   flex-direction: column;
 }
 
+.game-board {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
 .all-cards {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -76,10 +84,6 @@
 .card-img-front,
 .card-img-back {
   width: 9.8rem;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
 }
 
 .matched {
