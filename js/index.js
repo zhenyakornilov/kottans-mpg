@@ -62,7 +62,12 @@ function isEqualCard(first, second) {
 }
 
 function restartGame() {
-  location.reload();
+  states.cardsMatches = 0;
+  states.firstFlippedCard = null;
+  states.secondFlippedCard = null;
+  states.totalTries = 0;
+  totalTriesCounter.innerHTML = `Total tries: ${states.totalTries}`
+  renderCards(allCards, cardsMenu);
 }
 
 let cardsBlocked = false;
