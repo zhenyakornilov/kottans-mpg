@@ -9,8 +9,8 @@ const states = {
   currentCardPair: [],
   totalTries: 0,
 };
-const allGameCards = shuffleCards([...cards, ...cards]);
-renderCards(allGameCards, cardsMenu);
+const allCards = shuffleCards([...cards, ...cards]);
+renderCards(allCards, cardsMenu);
 
 function shuffleCards(cardsArr) {
   for (let i = cardsArr.length - 1; i > 0; i--) {
@@ -27,7 +27,7 @@ function renderCards(cardsObj, cardsList) {
   let cardsHTML = cardsObj
     .map(({ name, imageSrc }) => {
       return `
-      <li class="game-card">
+      <li class="game-card" name="${name}">
         <div class="card-inner">
           <div class="card-front">
             <img class="card-img-front" src="images/treble_clef.webp" alt="image of treble clef">
@@ -57,8 +57,8 @@ function flipBack(currentCardPair) {
   });
 }
 
-function checkCardsMatch() {
-  return states.firstFlippedCard.isEqualNode(states.secondFlippedCard);
+function isEqualCard(first, second) {
+  return first.attributes['name'].value === second.attributes['name'].value;
 }
 
 function restartGame() {
@@ -81,7 +81,7 @@ cardsMenu.addEventListener("click", async function flipCards({ target }) {
         states.currentCardPair;
       cardsBlocked = true;
 
-      if (!checkCardsMatch()) {
+      if (!isEqualCard(states.firstFlippedCard, states.secondFlippedCard)) {
         await sleep(600).then(() => flipBack(states.currentCardPair));
         states.totalTries++;
       } else {
